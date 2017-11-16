@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Word List</title>
+<!-- // var id = $(this).closest('li').find('.entry span[id]').attr('id'); //id: $('input[name="id"]').val(), proglang: $('input[name="article"]').val(),-->
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type=text/javascript>
+        $(function() {
+          $('a#process_input').bind('click', function() {
+            var id_ = $(this).prevAll('p:first').attr('id');      //return the id, which is the index of the entry in the database
+            var article_ = $(this).prevAll('input:first').val();  //return the article wriiten by the user
+            var res = $(this).prevAll('span:first');              //this maps the result container
+            //alert(res.text());
+            $.getJSON('/_validate', {
+              article: article_,
+              id: id_,
+              res: res.text(),
+            }, function(data) {
+              res.text(data.result)
+            });
+            return false;
+          });
+        });
+    </script>
+
+    <link rel="shortcut icon" href="//api.jquery.com/jquery-wp-content/themes/api.jquery.com/i/favicon.ico">
+
+    <link href="{{url_for('static', filename='bootstrap.min.css' ) }}" rel="stylesheet">
+
+
+    <style type="text/css">
+    body {
+    background-color: #10CC85;
+    }
+    h2{
+    position: relative;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: white;
+    font-weight:bold;
+    }
+    h2 p {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    }
+    div {
+
+}
+    form {
+
+    background: pink;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    position: absolite;
+    padding: 10px;
+    width: 620px;
+    }
+    </style>
+
+</head>
+<body>
+<h2 > <p> ########## Word List ########## </p> </h2>
+
+<a href="/addprofileform" style="margin-left:60%;"> +++ [ Add word ]</a>
+<br/>
+<br/>
+<ul>
+    {% for entry in entries %}
+
+        <div id="entry">
+            <form>
+
+                <input type="text" name="{{entry.id}}" style="width:60px;" value="">
+                <p id="{{ entry.id }}" style="padding: 10px; display: inline; font-weight: bold; font-size: 24px; color: #3E9977; top:-0.2em;"> {{ entry.country_of_residence }} </p>
+                <span class="result" id="{{ entry.id }}" style="font-weight:bold; padding: 10px;"></span>
+                <a href="#" id="process_input" class="{{ entry.id }}"> <button class="btn btn-default">Check</button></a>
+                <a href="/quiz?id={{ entry.id }}" style="padding: 10px; ">Quiz</a>
+                <a href="/editprofile?id={{ entry.id }}" style="padding: 10px;">Edit word</a>
+                <a href="/deleteprofile?id={{ entry.id }}" style="padding: 10px;">Delete word</a>
+
+            </form>
+
+        </div>
+
+       <br/>
+    {% else %}
+        <li>No Data</li>
+    {% endfor %}
+</ul>
+
+</body>
+</html>

@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Word List</title>
+<!-- // var id = $(this).closest('li').find('.entry span[id]').attr('id'); //id: $('input[name="id"]').val(), proglang: $('input[name="article"]').val(),-->
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type=text/javascript>
+        $(function() {
+          $('a#process_input').bind('click', function() {
+            var id_ = $(this).prevAll('span:first').attr('id');              //return the id, which is the index of the entry in the database
+            var qq = 'article'+id_ ;                                         //return the article wriiten by the user
+            var article = document.getElementById(qq);
+            var q = 'res'+id_;
+            var res = document.getElementById(q);
+            restxt = res.textContent;
+            var english_ = $(this).prevAll('input:first').val();          //english translation of the word
+            $.getJSON('/_validate', {
+              article: article.value,                                    //forward the values to the python function
+              id: id_,
+              english: english_,
+              res: restxt,                                             // this is the result
+            }, function(data) {
+              res.innerHTML = data.result;                                       // Returning the result
+            });
+            return false;
+          });
+        });
+
+        $(function() {
+          $('a#process_all').bind('click', function() {
+            var buttons = document.getElementsByName('but');             //return the id, which is the index of the entry in the database
+            for(var i = 0; i <= buttons.length; i++){
+               buttons[i].click();
+            }
+          });
+        });
+
+         $(function() {
+         $('a#count_').bind('click', function() {
+            var childText = $('#master_').text();
+            var count = (childText.match(/CORRECT/g) || []).length;
+            var count2 = (childText.match(/WRONG/g) || []).length;
+            alert('You got '+count+' correct and '+count2+' wrong');
+            });
+        });
+    </script>
+
+    <link rel="shortcut icon" href="//api.jquery.com/jquery-wp-content/themes/api.jquery.com/i/favicon.ico">
+    <link href="{{url_for('static', filename='bootstrap.min.css' ) }}" rel="stylesheet">
+
+    <style type="text/css">
+    body {
+    background-color: #10CC85;
+    }
+    h2{
+    position: relative;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: white;
+    font-weight:bold;
+    }
+    h2 p {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    }
+    form {
+    background: pink;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    position: absolite;
+    padding: 10px;
+    width: 70%;
+    }
+    .t button{
+    position:relative;
+    left:40%;
+    }
+    .t div{
+    text-align:center;
+
+    }
+    </style>
+
+</head>
+<body>
+<h2 > <p> ########## Word List ########## </p> </h2>
+
+<a href="/addprofileform" style="margin-left:60%;"> +++ [ Add word ]</a>
+<br/>
+<br/>
+<ul id="master_">
+    {% for entry in entries %}
+        <div id="{{entry.id}}">
+            <form>
+                <input type="text" name="article{{entry.id}}" id="article{{entry.id}}" style="width:60px;" value="" >
+                <input type="text" name="eng{{entry.id}}" style="width:120px; margin-right:20px" value="" />
+                <span id="{{ entry.id }}" style="position:relative; width:100px; padding: 10px; font-weight: bold; font-size: 24px; color: #3E9977; top:+0.2em; margin-right:15px;"> {{ entry.english }} </span>
+                <a href="#" id="process_input"> <button name="but" class="btn btn-default">Check</button></a>
+
+                <span class="result" id="res{{ entry.id }}" style="font-weight:bold; padding: 10px;"></span>
+                <a href="/editprofile?id={{ entry.id }}" style="padding-left: 20px;padding:10px;">Edit word</a>
+                <a href="/deleteprofile?id={{ entry.id }}" style="padding: 10px;">Delete word</a>
+                <span id="{{ entry.id }}" hidden ></span>
+            </form>
+        </div>
+       <br/>
+    {% else %}
+        <li>No Data</li>
+    {% endfor %}
+</ul>
+
+<div class="t">
+ <a href="#" id="process_all"> <button name="butAll" class="t" >Check All</button></a>
+ <a href="#" id="count_"> <button name="butCount" class="t" >Count Answers</button></a>
+</div>
+
+<br/><br/>
+
+</body>
+</html>

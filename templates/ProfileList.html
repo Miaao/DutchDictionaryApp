@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Word List</title>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='main1.js' ) }}"></script>
+
+    <link rel="shortcut icon" href="//api.jquery.com/jquery-wp-content/themes/api.jquery.com/i/favicon.ico">
+    <link href="{{url_for('static', filename='bootstrap.min.css' ) }}" rel="stylesheet">
+    <link href="{{url_for('static', filename='list.css' ) }}" rel="stylesheet">
+
+</head>
+<body>
+<h2 > <p> ########## Word List ########## </p> </h2>
+
+<a href="/addprofileform" style="margin-left:60%;"> +++ [ Add word ]</a>
+<br/><br/>
+
+<ul id="master_">
+<form action='/_answerspage2' method="get">
+    {% for entry in entries %}
+        <div id="{{entry.id}}" class="top">
+            <table style="">
+                <tr>
+                    <th style="width:120px; margin-right:20px">
+                        <input type="text" id="eng{{entry.id}}" name="dutch[]" style="height: 26px;width:120px; margin-right:20px" value="" /></th>
+                    <th style="width:320px; margin-right:20px" class="dutchword1">
+                        <span id="{{ entry.id }}" class="dutchword1"> {{ entry.english }} </span></th>
+
+                    <th><a href="#" name="{{ entry.id }}"  id="process_input">
+                        <button name="but" type="button" class="btn btn-default" style="height: 30px;font-weight: bold;color: #118ebd; margin-top:-1.2px">Check</button></a></th>
+                    <th style="width:100px; margin-right:20px"><span class="result" id="res{{ entry.id }}" style="font-weight:bold; padding: 10px;"></span></th>
+                    <th><a href="/editprofile?id={{ entry.id }}" class="editLink">Edit</a></th>
+                    <th><span id="{{ entry.id }}" hidden ></span><th>
+                </tr>
+            </table>
+        </div>
+       <br/>
+    {% else %}
+        <li>No Data</li>
+    {% endfor %}
+       <br/>
+    <a href="#" id="process_all"> <button name="butAll" class="t" type="button" >Check All</button></a>
+    <a href="#/" id="count_"> <button name="butCount" class="t" type="button">Count Answers</button></a>
+    <input type="submit" class="t" value="Answers page"/>
+
+    </form>
+</ul>
+
+
+
+<br/><br/>
+
+</body>
+</html>

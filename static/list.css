@@ -1,0 +1,100 @@
+    body {
+    background-color: #10CC85;
+    }
+    h2{
+    position: relative;
+    padding: 10px;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    color: white;
+    font-weight:bold;
+    }
+    h2 p {
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    }
+    form {
+    margin-left: auto;
+    margin-right: auto;
+    text-align: center;
+    position: relative;
+    padding: 5px;
+    width: 72%;
+    }
+    .top {
+    background: pink;
+    }
+
+    .t button{
+    position:relative;
+    left:40%;
+    font-weight: bold;
+    }
+    .t div{
+    text-align:center;
+    }
+    table{
+    width:75%; height: 5px; text-align:center;
+    position:relative;
+    margin-left: auto;
+    margin-right: auto;
+    }
+    .answerTable {
+    text-align:center;
+    position:relative;
+    margin-left: auto;
+    margin-right: auto;
+    width:75%;
+    }
+
+    .dutchword {
+    position:relative;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #0dbf55;
+    margin-right:15px;
+    }
+
+    .dutchword th{
+    width:120px;
+    margin-right:20px;
+    position:relative;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #0dbf55;
+    margin-right:15px;
+    }
+
+
+    .dutchword1 {
+    width:320px;
+    position:relative;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #0dbf55;
+    }
+
+    .answerword1 {
+    width:320px;
+    position:relative;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 20px;
+    color: #a6006b;
+    }
+
+    .yesNo {
+    text-align:right;
+    position:relative;
+
+    }
+
+    .editLink {
+    padding-left: 20px;padding:10px;color: #875d78;
+    }

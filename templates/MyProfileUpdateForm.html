@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>My profile update form</title>
+        <link href="{{url_for('static', filename='bootstrap.min.css' ) }}" rel="stylesheet">
+    <link href="{{url_for('static', filename='list.css' ) }}" rel="stylesheet">
+
+</head>
+<body>
+
+<form action="/updateprofile" method="get">
+    <p hidden>Id: <input type="text" name="id" value="{{ person[0] }}"></p>
+    <br/>
+    Atribute: <input type="text" name="myname" value="{{ person[1] }}">
+    <br/>
+    Word: <input type="text" name="english" value="{{ person[2] }}">
+    <br/>
+    <input type="submit" value="Submit button"/>
+
+</form>
+
+</body>
+</html>

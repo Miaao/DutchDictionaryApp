@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Word List</title>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{url_for('static', filename='main1.js' ) }}"></script>
+
+    <link rel="shortcut icon" href="//api.jquery.com/jquery-wp-content/themes/api.jquery.com/i/favicon.ico">
+    <link href="{{url_for('static', filename='bootstrap.min.css' ) }}" rel="stylesheet">
+    <link href="{{url_for('static', filename='list.css' ) }}" rel="stylesheet">
+
+</head>
+<body>
+<a href="/"><h2 > <p> ########## Word List ########## </p> </h2></a>
+
+<a href="/addprofileform" style="margin-left:60%;"> +++ [ Add word ]</a>
+<br/><br/>
+
+
+
+<ul id="master_">
+<form >
+    {% for entry in entries %}
+        <div id="{{entry.id}}" class="top">
+            <table style="">
+                <tr>
+                    <th style="width:250px;">
+                        <span type="text" id="eng{{entry.id}}" class="answerword1">{{ entry.answer }}</span></th>
+                    <th style="width:320px; margin-right:20px" class="dutchword1">
+                        <span id="{{ entry.id }}" class="dutchword1"> {{ entry.myname }} </span></th>
+                    <th class="yesNo"> <span class="yesNo"> {{ entry.correct | safe }} </span></th>
+                </tr>
+            </table>
+        </div>
+       <br/>
+    {% else %}
+        <li>No Data</li>
+    {% endfor %}
+    <a href="#/" id="count_"> <button name="butCount" class="t" type="button">Count Answers</button></a>
+    </form>
+</ul>
+
+
+
+<br/><br/>
+
+</body>
+</html>

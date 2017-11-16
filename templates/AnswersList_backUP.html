@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Word List</title>
+
+    <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+
+    <link rel="shortcut icon" href="//api.jquery.com/jquery-wp-content/themes/api.jquery.com/i/favicon.ico">
+    <link href="{{url_for('static', filename='bootstrap.min.css' ) }}" rel="stylesheet">
+    <link href="{{url_for('static', filename='list.css' ) }}" rel="stylesheet">
+
+</head>
+<body>
+<a href="/"><h2 > <p> ########## Word List ########## </p> </h2></a>
+
+<a href="/addprofileform" style="margin-left:60%;"> +++ [ Add word ]</a>
+<br/><br/>
+
+<ul id="master_">
+    {% for entry in entries %}
+        <div id="{{entry.id}}"class="answerTable">
+            <form>
+                <table style="width=100%">
+                   <tr>
+
+                    <th style="width:320px;">answer: <span class="dutchword1"> {{ entry.answer }} </span></th>
+                    <th style="width:8020px;margin-right:20px;">dutch: <span class="dutchword1"> {{ entry.myname }} </span></th>
+                    <th> <span"> {{ entry.correct | safe }} </span></th>
+
+                 </tr>
+                </table>
+            </form>
+        </div>
+       <br/>
+    {% else %}
+        <li>No Data</li>
+    {% endfor %}
+</ul>
+
+
+
+<br/><br/>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Article Quiz</title>
+</head>
+<body>
+<h2>Write the appropriate article</h2>
+
+<ul>
+
+    <form action="/validate" method="get, post">
+        <p hidden><input type="text" name="id" value="{{ person[0] }}"></p>
+
+        Article: <input type="text" name="article" value="">
+        <br/>
+        Word:    <input type="text" name="country_of_residence" value="{{ person[2] }}">
+        <br/>
+        PRESS -----> <input type="submit" value="Validate"/>
+
+</ul>
+<br/>
+
+<a href="/">Go back to WordList</a>
+</body>
+</html>
